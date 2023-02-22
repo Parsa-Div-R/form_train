@@ -50,18 +50,63 @@
 </nav>
 <section class="container gray-txt">
     <h4 style="color: darkslategray" class="center">register ur self</h4>
-    <form class="white" action="app.php" method="post" enctype="multipart/form-data">
+    <form class="white" action="" method="post" enctype="multipart/form-data">
+
+        <?PHP
+        $user_last_name=$user_name=$user_password=$user_email='';
+        $form_error=['not_valid_email'=>'','not_valid_name'=>'','not_valid_password'=>'','not_valid_last_name'=>''];
+        if (isset($_POST['submit'])) {
+
+            if (empty($_POST['user_name'])) {
+                $form_error['not_valid_name'] = 'u need to write ur name ';
+            } else
+                $user_name = ($_POST['user_name']);
+            if (empty($_POST["user_last_name"])) {
+                $form_error['not_valid_last_name'] = 'u need to write ur last name ';
+            } else
+                $user_last_name = ($_POST["user_last_name"]);
+            if (empty($_POST['user_email'])) {
+                $form_error['not_valid_email'] = 'u need to write ur email';
+            } else {
+                $user_email = ($_POST["user_email"]);
+                if (!filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
+                    $form_error['not_valid_email'] = 'unavailable email pls check it ';
+                }
+                if (empty($_POST['user_password'])) {
+                    $form_error['not_valid_password'] = 'u need to write ur password ';
+                } else {
+                    $user_password = ($_POST["user_password"]);
+                    if (preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/", $user_password)) {
+                        echo htmlspecialchars($_POST["user_password"]);
+                    }
+
+                }
+            }
+        }
+        ?>
         <label>user name
-            <input type="text" name="user_name">
+
+            <input type="text" name="user_name" value="<?php echo htmlspecialchars($user_name) ?>">
+            <div class="red-text"><?php echo $form_error['not_valid_name'] ?></div>
+
         </label>
         <label>last name
-            <input type="text" name="last_name">
+
+            <input type="text" name="user_last_name" value="<?php echo htmlspecialchars($user_last_name) ?>">
+            <div class="red-text"><?php echo $form_error['not_valid_last_name'] ?></div>
+
         </label>
         <label>email
-            <input type="text" name="user_email">
+
+            <input type="text" name="user_email"value="<?php echo htmlspecialchars($user_email) ?>" >
+            <div class="red-text"><?php echo $form_error['not_valid_email'] ?></div>
+
         </label>
         <label>password
-            <input type="password" name="user_password">
+
+            <input type="password" name="user_password" value="<?php echo htmlspecialchars($user_password) ?>">
+            <div class="red-text"><?php echo $form_error['not_valid_password'] ?></div>
+
         </label>
         <div class="center">
             <input type="file" name="file" >
@@ -71,10 +116,9 @@
             <input type="submit" name="submit" value="Submit" class="btn brand z-depth-0">
         </div>
 
-
     </form>
-</section>
 
+</section>
 </body>
 </html>
 

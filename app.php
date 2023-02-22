@@ -1,14 +1,7 @@
 <!doctype html>
 <html lang="en">
 <?php
-if (isset($_POST['submit'])){
-    echo $_POST['user_name'];
-    echo '<br>';
-    echo $_POST['last_name'];
-    echo '<br>';
-    echo $_POST['user_email'];
 
-}
 ?>
     <?php
 
