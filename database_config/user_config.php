@@ -6,7 +6,7 @@ $dbname='library';
 $server_port='3307';
 $server_user="parsa1";
 $server_pass='1068';
-
+global $conn;
 try {
 
     $conn = new PDO("mysql:host=$server_name;port=$server_port;dbname=$dbname",$server_user,$server_pass);
