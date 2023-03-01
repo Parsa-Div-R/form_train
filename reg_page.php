@@ -2,6 +2,7 @@
 
 
 
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,15 +26,12 @@
         }
 
         .brand {
-            background: #2F4F4F;
-        !important;
+            background: #2F4F4F; !important;
         }
-
-        .brand-text {
+        .brand-text{
             color: #2F4F4F !important;
         }
-
-        form {
+        form{
             max-width: 420px;
             margin: 20px auto;
             padding: 22px;
@@ -47,60 +45,53 @@
     <div class="container ">
         <a href="#" class="brand-logo brand-text"> company name </a>
         <ul id="nav-mobile" class="right hide-on-small-and-down">
-            <li><a href="#" class="btn brand z-depth-0 ">login </a></li>
+            <li><a href="#" class="btn brand z-depth-0 " >login </a></li>
         </ul>
     </div>
 </nav>
 <section class="container gray-txt">
     <h4 style="color: darkslategray" class="center">register ur self</h4>
     <form class="white" action="" method="post" enctype="multipart/form-data">
-        <?php
 
-
-        include 'reg_checkout.php'
+        <?PHP
+        require 'reg_checkout.php'
         ?>
-
         <label>user name
 
             <input type="text" name="user_name" value="<?php echo htmlspecialchars($user_name ?? '') ?>">
-            <a class="red-text"><?php if(invalid_user_name()){echo 'empty name';} else $user_name=$_POST['user_name']?></a>
+            <a class="red-text"><?php echo ($form_error['invalid_name']) ?></a><br>
 
         </label>
         <label>last name
 
             <input type="text" name="user_last_name" value="<?php echo htmlspecialchars($user_last_name ?? '') ?>">
-            <div class="red-text"><?php  if (invalid_last_user_name())echo invalid_last_user_name()?><br></div>
+            <a class="red-text"><?php echo $form_error['invalid_last_name'] ?></a><br>
 
         </label>
         <label>email
-            <br>
-            <input type="text" name="user_email"value="<?php echo htmlspecialchars($user_email ?? '') ?>" >
-            <a class="red-text"><?php if (invalid_email()) echo invalid_email()?><br></a>
+
+            <input type="text" name="user_email" value="<?php echo htmlspecialchars($user_email ?? '') ?>">
+            <a class="red-text"><?php echo $form_error['invalid_email'] ?></a><br>
+
         </label>
         <label>password
 
             <input type="password" name="user_password" value="<?php echo htmlspecialchars($user_password ?? '') ?>">
-            <a class="red-text"><?php if (invalid_password())invalid_password();?><br></a>
+            <a class="red-text"><?php echo $form_error['invalid_password'] ?></a><br>
 
         </label>
         <div class="center">
-            <input type="file" name="file" >
+            <input type="file" name="file">
         </div>
 
         <div class="center">
             <input type="submit" name="submit" value="Submit" class="btn brand z-depth-0">
         </div>
-        <?PHP
 
-
-
-        ?>
     </form>
 
 </section>
 </body>
 </html>
-
-
 
 
