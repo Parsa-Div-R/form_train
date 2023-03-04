@@ -51,7 +51,7 @@
 </nav>
 <section class="container gray-txt">
     <h4 style="color: darkslategray" class="center">register ur self</h4>
-    <form class="white" action="" method="post" enctype="multipart/form-data">
+    <form class="white" action='' method="post" enctype="multipart/form-data">
 
         <?PHP
         require 'reg_checkout.php'

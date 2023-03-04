@@ -24,10 +24,11 @@ class UserConfig
         }
     }
 
-    function duplicateEmailCheck()
+    function duplicateEmailCheck($user_email)
     {
         $stmt = $this->conn->prepare("SELECT form_php.users.user_email from form_php.users WHERE user_email=?");
-        $stmt->execute($_POST['user_email']);
+        $user_email=[$user_email];
+        $stmt->execute($user_email);
         $duplicate_email = $stmt->fetch();
         return boolval($duplicate_email);
     }
