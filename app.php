@@ -6,15 +6,9 @@
 ?>
     <?php
 
-        include 'form/header.php';
-        include 'form/about_us_section.php';
-        include 'form/footer.php';
-
-
-
-
-
-
+        include 'main_page/header.php';
+        include 'main_page/about_us_section.php';
+        include 'main_page/footer.php';
 
 
     ?>
