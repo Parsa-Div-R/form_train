@@ -1,4 +1,5 @@
 <?php
+
 // this class will handel everything this site need an aql query for registering and login
 class UserConfig
 {
@@ -32,21 +33,22 @@ class UserConfig
         return boolval($duplicate_email);
     }
 
-    //insert user data into correct databaase
+    //insert user data into correct database
     function userRegister($fun_user_name, $fun_user_last_name, $fun_user_password, $fun_user_email): void
     {
         $sql = "INSERT INTO form_php.users(id,user_name,user_last_name,user_email,user_password) VALUES(NULL,'$fun_user_name','$fun_user_last_name','$fun_user_email','$fun_user_password')";
         $this->conn->exec($sql);
         echo 'ur register into COMPANY NAME also u can enjoy our service';
     }
+
     function emailExist($user_email): bool
     {
         $sql = $this->conn->prepare("SELECT form_php.users.id from form_php.users WHERE user_email='$user_email'  ");
         $sql->execute();
         $user_name = $sql->fetch();
-        if ($user_name){
-            return true ;
-        }else
+        if ($user_name) {
+            return true;
+        } else
             return false;
     }
 
@@ -58,9 +60,8 @@ class UserConfig
         $user_name = $sql->fetch();
 
         if ($user_name) {
-            echo 'welcome '.$user_name[0].' to your account';
+            echo 'welcome ' . $user_name[0] . ' to your account';
         } else
-
-            echo'incorrect password pls check it and try again ';
+            echo 'incorrect password pls check it and try again ';
     }
 }
