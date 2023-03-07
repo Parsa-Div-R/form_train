@@ -6,7 +6,7 @@ $user_email = '';
 $user_password = '';
 $form_error = ['invalid_email' => '', 'invalid_name' => '', 'invalid_password' => '', 'invalid_last_name' => ''];
 $userConfig = new UserConfig;
-
+$switch_page=false ;
 //if button in reg page pressed
 if (isset($_POST['submit'])) {
 
@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
         $user_password = ($_POST["user_password"]);
         if (!preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/", $user_password)) {
             $form_error['invalid_password'] = 'u need to fallow this step --> at least 8 character, one uppercase and lowercase English letter , one digit and ne special character';
-        }else $user_password=md5($user_password);
+        }
     }
 
     //email
@@ -67,5 +67,7 @@ if (isset($_POST['submit'])) {
     // going for saving basic user data in (database/UserConfig) file
     if (!array_filter($form_error)) {
         $userConfig->userRegister($fun_user_name = $user_name, $fun_user_last_name = $user_last_name, $fun_user_password = $user_password, $fun_user_email = $user_email);
+        $switch_page=true;
+        $user_password=md5($user_password);
     }
 }
