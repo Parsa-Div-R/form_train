@@ -82,6 +82,7 @@
         </div>
 
         <div class="center">
+            <?php if ($switch_page){header('location:'.'http://localhost/php/form_train/login_page') and $switch_page=false; } ?>
             <input type="submit" name="submit" value="Submit" class="btn brand z-depth-0">
         </div>
     </form>
